@@ -20,6 +20,7 @@ if (isset($_POST['periodo_inicio']) && isset($_POST['periodo_final']))
 /* Calcula la distribución (en porcentaje) de atención de los
  * meseros en base al monto vendido no en base al número de mesas
  * 
+ * 
  * SELECT cue.ID_mesero, IFNULL(usu.usuario, CONCAT("#",cue.ID_mesero) ) AS usuario, 
 SUM(ped.precio_grabado) AS subtotal 
 FROM pedidos ped LEFT JOIN cuentas cue USING(ID_cuenta) 
@@ -34,11 +35,7 @@ LEFT JOIN `productos_grupos` AS t4 USING(ID_grupo)
 WHERE `fechahora_pedido` BETWEEN '2018-08-01 00:00:00' AND '2018-08-01 23:59:00' AND 
 flag_anulado = 0 AND flag_cancelado = 0 AND nodo_sugerido ='comida' 
 GROUP BY DATE(fechahora_pedido) ORDER BY cantidad DESC;
- * 
- * 
- * 
- * 
- * 
+  * 
  */
 
 $c = 'SELECT ID_mesero, IFNULL(usuario, CONCAT("#",ID_mesero) ) AS usuario, '
