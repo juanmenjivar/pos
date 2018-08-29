@@ -35,6 +35,7 @@ LEFT JOIN `productos_grupos` AS t4 USING(ID_grupo)
 WHERE `fechahora_pedido` BETWEEN '2018-08-01 00:00:00' AND '2018-08-01 23:59:00' AND 
 flag_anulado = 0 AND flag_cancelado = 0 AND nodo_sugerido ='comida' 
 GROUP BY DATE(fechahora_pedido) ORDER BY cantidad DESC;
+  *
   * 
  */
 
