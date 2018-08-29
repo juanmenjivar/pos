@@ -29,8 +29,8 @@ function estadisticas_renderizar($datos) {
 
         foreach ($datos['aux']['dsn'] as $usuario => $valor) {
             $buffer .= "<li>" . $datos['aux']['dsn'][$usuario]['usuario'] . " : " . 
-                                $datos['aux']['dsn'][$usuario]['porcentaje'] . "% > $" . 
-                                $datos['aux']['dsn'][$usuario]['totalmesero']. "</li>";
+                                $datos['aux']['dsn'][$usuario]['porcentaje'] . "% > <a href='url'> $" . 
+                                $datos['aux']['dsn'][$usuario]['totalmesero']. "</a></li>";
         }
 
         estadisticas_agregar_panel('Distribucion de carga de servicio entre meseros', $buffer);

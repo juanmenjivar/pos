@@ -23,16 +23,19 @@ h2
     margin: 0px;
 }
 
-a {
+link {
+    display: none;
+}
+/*a {
     font-style: normal;
     text-decoration: none;
-    display: block;
-    background-color: black;
-    padding:15px 3px;
-    border-radius: 5px;
-    margin:3px;
-    color:white;
-}
+    display:compact ;
+    background-color: white;
+    padding:1px 1px;
+    border-radius: 1px;
+    margin:1px;
+    color:blue ;
+}*/
 
 label {
     font-size: 1.3em;
