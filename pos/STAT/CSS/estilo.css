@@ -61,6 +61,7 @@ table.zebra tr:nth-child(odd) td
   background-color:#FFE4C6;
 }
 
+/**/
 
 input[type="text"], input[type="number"], button {
     height: 40px;
@@ -306,4 +307,15 @@ div.pedido:before {
     content: "► ";
     float: left;
     margin-right: 2px;
+}
+
+.button {
+     background:none!important;
+     color:blue;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     /*border is optional*/
+     border-bottom:1px solid #444; 
+     cursor: pointer;
 }
