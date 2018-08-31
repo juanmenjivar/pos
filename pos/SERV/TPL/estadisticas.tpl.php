@@ -70,7 +70,10 @@ while ($f = db_fetch($r))
 foreach ($dsn as $ID_mesero => $bdsn)
 {
     // JOMR AUG28-18: $ del mesero
+    $dsn[$ID_mesero]['periodo_inicio'] =  $periodo_inicio;
+    $dsn[$ID_mesero]['periodo_final'] =  $periodo_final;    
     $dsn[$ID_mesero]['totalmesero'] =  $bdsn['subtotal'];
+    
     $dsn[$ID_mesero]['porcentaje'] = round((($bdsn['subtotal'] / $total) * 100),2);
     $json['aux']['dsn'][$ID_mesero] = $dsn[$ID_mesero];
 }

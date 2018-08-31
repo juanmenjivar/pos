@@ -26,17 +26,18 @@ function estadisticas_renderizar($datos) {
 
     if (!empty($datos['aux']['dsn'])) {
         $buffer = '';
-        $bf='';
-        
+                       
         foreach ($datos['aux']['dsn'] as $usuario => $valor) {
             
             $buffer .=  "<input type='hidden' name='indivPerformanceReportUsr' value='" . $usuario . "'>" .
-                    "<li>" . $datos['aux']['dsn'][$usuario]['usuario'] . " : " . 
+                        "<input type='hidden' name='periodo_inicio' value='" . $datos['aux']['dsn'][$usuario]['periodo_inicio'] . "'>" .
+                        "<input type='hidden' name='periodo_final' value='" . $datos['aux']['dsn'][$usuario]['periodo_final'] . "'>" .
+                        "<li>" . $datos['aux']['dsn'][$usuario]['usuario'] . " : " . 
                                 $datos['aux']['dsn'][$usuario]['porcentaje'] . "% > " . 
-                            "<input class='button' type='submit' value=$" . $datos['aux']['dsn'][$usuario]['totalmesero'] . " /> </li> ";
+                        "<input class='button' type='submit' value=$" . $datos['aux']['dsn'][$usuario]['totalmesero'] . " /> </li> ";
         }
         
-        $buffer='<form action="./TPL/indivPerformanceReport.php">' . $buffer . '</form>';
+        $buffer='<form method="post" action="./TPL/indivPerformanceReport.php">' . $buffer . '</form>';
 
         estadisticas_agregar_panel('Distribucion de carga de servicio entre meseros', $buffer);
     } else {
