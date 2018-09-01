@@ -21,13 +21,26 @@ if (isset($_POST['periodo_inicio']) && isset($_POST['periodo_final']))
  * meseros en base al monto vendido no en base al número de mesas
  * 
  * 
- * SELECT cue.ID_mesero, IFNULL(usu.usuario, CONCAT("#",cue.ID_mesero) ) AS usuario, 
-SUM(ped.precio_grabado) AS subtotal 
+ * 
+ SELECT cue.ID_cuenta, cue.ID_mesero, IFNULL(usu.usuario, CONCAT("#",cue.ID_mesero) ) AS usuario, 
+ped.precio_grabado, prod.nombre, COUNT(prod.nombre) as ProdSales,flag_nopropina
 FROM pedidos ped LEFT JOIN cuentas cue USING(ID_cuenta) 
-	LEFT JOIN usuarios usu ON ID_mesero = ID_usuarios 
+	LEFT JOIN usuarios usu ON cue.ID_mesero = usu.ID_usuarios 
 	INNER JOIN productos as prod ON ped.ID_producto = prod.ID_producto
 WHERE ped.fechahora_pedido BETWEEN '2018-08-01 00:00:00' AND '2018-08-01 23:59:00' AND 
+cue.flag_anulado = 0 AND ped.flag_cancelado = 0 and cue.ID_mesero='5'
+GROUP BY prod.nombre
+ORDER BY cue.ID_cuenta;
+
+
+ SELECT cue.ID_cuenta, cue.ID_mesero, IFNULL(usu.usuario, CONCAT("#",cue.ID_mesero) ) AS usuario, 
+sum(ped.precio_grabado) AS subtotal
+FROM pedidos ped LEFT JOIN cuentas cue USING(ID_cuenta) 
+	LEFT JOIN usuarios usu ON cue.ID_mesero = usu.ID_usuarios 
+WHERE ped.fechahora_pedido BETWEEN '2018-08-01 00:00:00' AND '2018-08-01 23:59:00' AND 
 cue.flag_anulado = 0 AND ped.flag_cancelado = 0 GROUP BY cue.ID_mesero;
+
+
 
 SELECT DATE(fechahora_pedido) AS dia, COUNT(*) as cantidad FROM `pedidos` 
 LEFT JOIN `cuentas` USING(ID_cuenta)  LEFT JOIN `productos` AS t3  USING(ID_producto) 
@@ -35,8 +48,7 @@ LEFT JOIN `productos_grupos` AS t4 USING(ID_grupo)
 WHERE `fechahora_pedido` BETWEEN '2018-08-01 00:00:00' AND '2018-08-01 23:59:00' AND 
 flag_anulado = 0 AND flag_cancelado = 0 AND nodo_sugerido ='comida' 
 GROUP BY DATE(fechahora_pedido) ORDER BY cantidad DESC;
-  *
-  * 
+ * 
  */
 
 $c = 'SELECT ID_mesero, IFNULL(usuario, CONCAT("#",ID_mesero) ) AS usuario, '
@@ -58,7 +70,10 @@ while ($f = db_fetch($r))
 foreach ($dsn as $ID_mesero => $bdsn)
 {
     // JOMR AUG28-18: $ del mesero
+    $dsn[$ID_mesero]['periodo_inicio'] =  $periodo_inicio;
+    $dsn[$ID_mesero]['periodo_final'] =  $periodo_final;    
     $dsn[$ID_mesero]['totalmesero'] =  $bdsn['subtotal'];
+    
     $dsn[$ID_mesero]['porcentaje'] = round((($bdsn['subtotal'] / $total) * 100),2);
     $json['aux']['dsn'][$ID_mesero] = $dsn[$ID_mesero];
 }

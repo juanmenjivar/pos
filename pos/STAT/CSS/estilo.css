@@ -23,16 +23,19 @@ h2
     margin: 0px;
 }
 
-a {
+link {
+    display: none;
+}
+/*a {
     font-style: normal;
     text-decoration: none;
-    display: block;
-    background-color: black;
-    padding:15px 3px;
-    border-radius: 5px;
-    margin:3px;
-    color:white;
-}
+    display:compact ;
+    background-color: white;
+    padding:1px 1px;
+    border-radius: 1px;
+    margin:1px;
+    color:blue ;
+}*/
 
 label {
     font-size: 1.3em;
@@ -58,6 +61,7 @@ table.zebra tr:nth-child(odd) td
   background-color:#FFE4C6;
 }
 
+/**/
 
 input[type="text"], input[type="number"], button {
     height: 40px;
@@ -303,4 +307,15 @@ div.pedido:before {
     content: "► ";
     float: left;
     margin-right: 2px;
+}
+
+.button {
+     background:none!important;
+     color:blue;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     /*border is optional*/
+     border-bottom:1px solid #444; 
+     cursor: pointer;
 }
