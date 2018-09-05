@@ -1,3 +1,4 @@
+
 function agregar_info(texto) {
     $("#estadisticas").append('<div style="padding-top:5px;">' + texto + '</div>');
 }
@@ -15,6 +16,7 @@ function agregar_panel(titulo, contenido) {
 		html += '</div>';
 	html += '</div>';
 	$("#estadisticas").append(html);
+        
 }
 
 function estadisticas() {
@@ -24,13 +26,32 @@ function estadisticas() {
     $("#estadisticas").html('<b>{cargando estadísticas}</b>');
     rsv_solicitar('estadisticas',{periodo_inicio: periodo_inicio, periodo_final: periodo_final},function(datos){
         $("#estadisticas").empty();
-        $("#estadisticas").html(datos.html);      
+        $("#estadisticas").html(datos.html); 
+        accordion();
     });
+    
 }
 
 $(function(){
     $("#actualizar").click(function(){
-        estadisticas();
+        estadisticas();        
     });
 });
 
+function accordion(){
+    var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            
+            if (panel.style.maxHeight){
+              panel.style.maxHeight = null;
+            } else {
+              panel.style.maxHeight = panel.scrollHeight + "px";
+            } 
+          });
+        }
+}

@@ -27,31 +27,38 @@ function estadisticas_renderizar($datos) {
     if (!empty($datos['aux']['dsn'])) {
         $buffer = '';
                        
-        foreach ($datos['aux']['dsn'] as $usuario => $valor) {
-            /*
-             * "<input type='hidden' name='periodo_inicio' value='" . $datos['aux']['dsn'][$usuario]['periodo_inicio'] . "'>" .
-             "<input type='hidden' name='periodo_final' value='" . $datos['aux']['dsn'][$usuario]['periodo_final'] . "'>" .
-             
-             "<input type='hidden' name='indivPerformanceReportUsr' value='" . $usuario . "@@#" . 
-                $datos['aux']['dsn'][$usuario]['periodo_inicio'] . "@@#" . $datos['aux']['dsn'][$usuario]['periodo_final'] . "'>" .
-                
-                <input class='button' type='submit' value=
-                
-                $buffer='<form method="post" action="./TPL/indivPerformanceReport.php">' . $buffer . '</form>';
-             */
+        foreach ($datos['aux']['dsn'] as $usuario => $valor) {                                           
+            $buffer .=  "<button class='accordion'><table class='blueTable'><thead><tr>" 
+                    . "<th>Meser@:</th><th>" .$datos['aux']['dsn'][$usuario]['usuario']."</th> "                     
+                    . "<th>Porcentaje:</th><th>" . $datos['aux']['dsn'][$usuario]['porcentaje'] . "% </th> " 
+                    . "<th>Total:</th>   <th>$" . $datos['aux']['dsn'][$usuario]['subtotal'] . "</th> </thead> </table>"
+                    . "</button>" ;
             
-            $tmp="./TPL/indivPerformanceReport.php?a1='".trim($datos['aux']['dsn'][$usuario]['periodo_inicio'])."'&a2='".$datos['aux']['dsn'][$usuario]['periodo_final']."'";
-            $tmp.="&s1='".$usuario."'";
+            $buffer2='';
+            $buffer2='<div class="accordionpanel "> '
+                    . '<table class="blueTable"> <tr>'
+                    . '<thead><th>Tipo</th>'
+                    . '<th>Producto</th>'
+                    . '<th>Cantidad</th>'
+                    . '<th>Total</th>'
+                    . '</tr></thead><tbody>';
+                                                
+            foreach ($datos['aux']['dsn'][$usuario]['prods'] as $row) {
+                $buffer2 .= '<tr>'
+                        . '<th>' . $row['tipo'] . '</th>'
+                        . '<th>' . $row['producto'] . '</th>'
+                        . '<th>' . $row['cantidad'] . '</th>'
+                        . '<th>' . $row['total'] .  '</th></tr>';
+            }
             
-            $buffer .= "<li>" . $datos['aux']['dsn'][$usuario]['usuario'] . " : " . 
-                                $datos['aux']['dsn'][$usuario]['porcentaje'] . "% > " . 
-                                '<a href="' . $tmp . '" > $' . 
-                                $datos['aux']['dsn'][$usuario]['totalmesero'] . "</a> </li> ";
-        }
-        
-        
-
+            $buffer2.='</tbody></table>'; 
+            $buffer2.='</div>';
+            
+            $buffer.=$buffer2;
+        }              
+                  
         estadisticas_agregar_panel('Distribucion de carga de servicio entre meseros', $buffer);
+        
     } else {
         estadisticas_agregar_panel('Distribucion de carga de servicio entre meseros', 'Sin datos de rendimiento de meseros');
     }

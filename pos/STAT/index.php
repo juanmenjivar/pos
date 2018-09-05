@@ -14,12 +14,15 @@ $_html['contenido'] = ob_get_clean();
     <title><?php echo NOMBRE_RESTAURANTE . ' - ' . $_html['titulo']; ?></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="Content-Language" content="es" />
-    <link rel="stylesheet" href="CSS/estilo.css" />
-    <script type="text/javascript">URI_SERVIDOR = "<?php echo URI_SERVIDOR; ?>";</script>
-    <script type="text/javascript" src="<?php echo URI_SERVIDOR; ?>/JS/jquery.js"></script>
-    <script type="text/javascript" src="<?php echo URI_SERVIDOR; ?>/JS/comun.php"></script>
+               
+    <link rel="stylesheet" href="CSS/estilo.css" /> 
+    <script type="text/javascript">URI_SERVIDOR = "<?php echo URI_SERVIDOR; ?>";</script>        
+        
+    <script type="text/javascript" src="<?php echo URI_SERVIDOR; ?>/JS/jquery.js"></script> 
     <script type="text/javascript" src="JS/stat.js"></script>
+    <script type="text/javascript" src="<?php echo URI_SERVIDOR; ?>/JS/comun.php"></script> 
 </head> 
+
 <body> 
 <div id="page" >
     <div id="content">
