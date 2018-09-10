@@ -26,7 +26,7 @@ if (isset($_POST['periodo_inicio']) && isset($_POST['periodo_final']))
 $c='SELECT cue.ID_mesero, IFNULL(usu.usuario, CONCAT("#",cue.ID_mesero) ) AS usuario, '
         .'ROUND(SUM( ((COALESCE(ped.precio_grabado,0) + ( SELECT COALESCE(SUM(t3.precio_grabado),0 ) FROM pedidos_adicionales AS t3 ' 
    	    .'WHERE t3.tipo="poner" AND t3.ID_pedido=ped.ID_pedido )) / IF(cue.flag_exento = 0, 1, 1.13)) * '
-            . 'IF(cue.flag_nopropina = 0, 1.10, 1) ),2) AS subtotal ' 
+            . 'IF(cue.flag_nopropina = 0, 1.10, 1) ),2) AS subtotal, usu.color ' 
         .'FROM pedidos ped '
         .' LEFT JOIN cuentas cue USING(ID_cuenta) ' 
         .'LEFT JOIN usuarios usu ON cue.ID_mesero = usu.ID_usuarios ' 
@@ -47,14 +47,15 @@ while ($f = db_fetch($r))
 
 foreach ($dsn as $ID_mesero => $bdsn)
 {           
-    $dsn[$ID_mesero]['porcentaje'] = round((($bdsn['subtotal'] / $total) * 100),3);    
-        
-    $c="SELECT IF(cue.flag_nopropina = 0, 'Cuentas con propina', 'Cuentas sin propina') as tipo, " .
+    $dsn[$ID_mesero]['porcentaje'] = round((($bdsn['subtotal'] / $total) * 100),2);    
+    $dsn[$ID_mesero]['color'] =$bdsn['color'];
+            
+    $c="SELECT IF(cue.flag_nopropina = 0, 'Cuenta con propina', 'Cuenta sin propina') as tipo, " .
 	"prod.nombre AS producto, COUNT(prod.nombre) AS cantidad, " .
 	"ROUND(SUM( ((COALESCE(ped.precio_grabado,0) + ( " .
 	"			SELECT COALESCE(SUM(t3.precio_grabado),0 ) FROM pedidos_adicionales AS t3 " .
 	"				WHERE t3.tipo='poner' AND t3.ID_pedido=ped.ID_pedido )) / IF(cue.flag_exento = 0, 1, 1.13)) " .
-	"                                       * IF(cue.flag_nopropina = 0, 1.10, 1) ),2) AS total " .
+	"                                       * IF(cue.flag_nopropina = 0, 1.10, 1) ),4) AS total " .
         "FROM pedidos ped LEFT JOIN cuentas cue USING(ID_cuenta) " .
 	"LEFT JOIN usuarios usu ON cue.ID_mesero = usu.ID_usuarios " .
 	"INNER JOIN productos as prod ON ped.ID_producto = prod.ID_producto " .
@@ -64,35 +65,7 @@ foreach ($dsn as $ID_mesero => $bdsn)
     "ORDER BY cantidad DESC, total DESC"; 
                    
     $r = db_consultar($c);
-    $dsn[$ID_mesero]['prods']=mysqli_fetch_all($r,MYSQLI_ASSOC);
-    
-     /*
-      * $idx=1;
-    
-    
-    while ($f = db_fetch($r))
-    {                
-        $prods['tipo'] =  $f['tipo'];
-        $dsn[$ID_mesero][$idx]['producto'] =  $f['producto'];  
-        $dsn[$ID_mesero][$idx]['cantidad'] =  $f['cantidad'];
-        $dsn[$ID_mesero][$idx]['total'] =  $f['total'];
-                       
-        if($f['tipo']=='Cuentas con propina'){
-            if (!array_key_exists('totalconpropina',$dsn[$ID_mesero][$idx])) {
-                $dsn[$ID_mesero][$idx]['totalconpropina'] = 0;
-            }
-            $dsn[$ID_mesero][$idx]['totalconpropina']+=$f['total'];
-            
-        }elseif ($f['tipo']=='Cuentas sin propina'){
-            if (!array_key_exists('totalsinpropina',$dsn[$ID_mesero][$idx])) {
-                $dsn[$ID_mesero][$idx]['totalsinpropina'] = 0;
-            }
-            $dsn[$ID_mesero][$idx]['totalsinpropina']+=$f['total'];
-        } 
-        $idx+=1;
-    }
-      
-      */
+    $dsn[$ID_mesero]['prods']=mysqli_fetch_all($r,MYSQLI_ASSOC);        
     
     $json['aux']['dsn'][$ID_mesero] = $dsn[$ID_mesero];
 }
@@ -159,7 +132,7 @@ $c = 'SELECT  hour(fechahora_pedido) AS hora, '.$c_total.' '
         . 'FROM `pedidos` AS t2  LEFT JOIN `cuentas` USING(ID_cuenta) '
         . 'WHERE `fechahora_pedido` BETWEEN "'.$periodo_inicio.'" AND "'.$periodo_final.'" AND '
         . 'flag_pagado=1 AND flag_anulado=0 AND flag_cancelado=0 '
-        . 'GROUP BY HOUR(fechahora_pedido) ORDER BY HOUR(fechahora_pedido) DESC';
+        . 'GROUP BY HOUR(fechahora_pedido) ORDER BY total DESC';
 $r = db_consultar($c);
 
 $horas = array();

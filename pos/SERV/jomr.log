@@ -1,0 +1,24 @@
+1536368408[
+{"usuario":"Claudia","porcentaje":14.02,"color":"#DA8137"},
+{"usuario":"Antonio Ac","porcentaje":25.54,"color":"#9BBB59"},
+{"usuario":"Carlos Garcia","porcentaje":60.44,"color":"#4A7EBB"}]
+1536368507[
+{"usuario":"Claudia","porcentaje":14.02,"color":"#DA8137"},
+{"usuario":"Antonio*@*Ac","porcentaje":25.54,"color":"#9BBB59"},
+{"usuario":"Carlos*@*Garcia","porcentaje":60.44,"color":"#4A7EBB"}]
+1536368558[{"usuario":"Claudia","porcentaje":14.02,"color":"#DA8137"},{"usuario":"Antonio*@*Ac","porcentaje":25.54,"color":"#9BBB59"},{"usuario":"Carlos*@*Garcia","porcentaje":60.44,"color":"#4A7EBB"}]
+1536369288[{"usuario":"Claudia","porcentaje":14.02,"color":"#DA8137"},{"usuario":"Antonio*@*Ac","porcentaje":25.54,"color":"#9BBB59"},{"usuario":"Carlos*@*Garcia","porcentaje":60.44,"color":"#4A7EBB"}]
+1536369344[{"usuario":"Claudia","porcentaje":14.02},{"usuario":"Antonio*@*Ac","porcentaje":25.54},{"usuario":"Carlos*@*Garcia","porcentaje":60.44}]
+1536369487[{"usuario":"Claudia","porcentaje":14.02},{"usuario":"Antonio*@*Ac","porcentaje":25.54},{"usuario":"Carlos*@*Garcia","porcentaje":60.44}]
+1536370312[{"usuario":"Claudia","porcentaje":14.02},{"usuario":"Antonio*@*Ac","porcentaje":25.54},{"usuario":"Carlos*@*Garcia","porcentaje":60.44}]
+1536370369[{"usuario":"Claudia","porcentaje":14.02},{"usuario":"Antonio*@*Ac","porcentaje":25.54},{"usuario":"Carlos*@*Garcia","porcentaje":60.44}]
+1536370496[{"usuario":"Claudia","porcentaje":14.02},{"usuario":"Antonio*@*Ac","porcentaje":25.54},{"usuario":"Carlos*@*Garcia","porcentaje":60.44}]
+1536370518[{"usuario":"Claudia","porcentaje":14.02},{"usuario":"Antonio*@*Ac","porcentaje":25.54},{"usuario":"Carlos*@*Garcia","porcentaje":60.44}]
+1536370539[{"usuario":"Claudia","porcentaje":14.02},{"usuario":"Antonio*@*Ac","porcentaje":25.54},{"usuario":"Carlos*@*Garcia","porcentaje":60.44}]
+1536370546[{"usuario":"Claudia","porcentaje":14.02},{"usuario":"Antonio*@*Ac","porcentaje":25.54},{"usuario":"Carlos*@*Garcia","porcentaje":60.44}]
+1536370966[{"usuario":"Claudia","porcentaje":14.02},{"usuario":"Antonio*@*Ac","porcentaje":25.54},{"usuario":"Carlos*@*Garcia","porcentaje":60.44}]
+1536371019[{"usuario":"Claudia","porcentaje":14.02},{"usuario":"Antonio*@*Ac","porcentaje":25.54},{"usuario":"Carlos*@*Garcia","porcentaje":60.44}]
+1536371108[{"usuario":"Claudia","porcentaje":14.02},{"usuario":"Antonio*@*Ac","porcentaje":25.54},{"usuario":"Carlos*@*Garcia","porcentaje":60.44}]
+1536371140[{"usuario":"Claudia","porcentaje":14.02},{"usuario":"Antonio*@*Ac","porcentaje":25.54},{"usuario":"Carlos*@*Garcia","porcentaje":60.44}]
+1536371210["Empleado","%Venta",{"usuario":"Claudia","porcentaje":14.02},{"usuario":"Antonio*@*Ac","porcentaje":25.54},{"usuario":"Carlos*@*Garcia","porcentaje":60.44}]
+1536371325{"Empleado":"Empleado","%Venta":"%Venta","0":{"usuario":"Claudia","porcentaje":14.02},"1":{"usuario":"Antonio*@*Ac","porcentaje":25.54},"2":{"usuario":"Carlos*@*Garcia","porcentaje":60.44}}

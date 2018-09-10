@@ -28,6 +28,7 @@ function estadisticas() {
         $("#estadisticas").empty();
         $("#estadisticas").html(datos.html); 
         accordion();
+        graficar();
     });
     
 }
@@ -54,4 +55,29 @@ function accordion(){
             } 
           });
         }
+}
+
+function graficar(){
+    // Load google charts
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);                        
+
+            // Draw the chart and set the chart values
+            function drawChart() {
+                var obj= document.getElementById('chartArr');
+                var s=obj.value;
+                s=s.replace(/#@#/gi,' ');
+                var arr = JSON.parse(s);
+            
+                // JSON.parse(document.getElementById('chartArr').value);
+
+              var data = google.visualization.arrayToDataTable(arr);
+
+              // Optional; add a title and set the width and height of the chart
+              var options = {'title':'Ventas Empleados', 'width':550, 'height':400};
+
+              // Display the chart inside the <div> element with id="piechart"
+              var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+              chart.draw(data, options);
+            }
 }

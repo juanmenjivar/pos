@@ -1,0 +1,12 @@
+{
+    "name": "vendor/restaurante-sv",
+    "description": "Description of project restaurante.sv.",
+    "authors": [
+        {
+            "name": "juan.menjivar",
+            "email": "your@email.here"
+        }
+    ],
+    "require": {
+    }
+}

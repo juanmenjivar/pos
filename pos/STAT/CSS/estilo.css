@@ -321,12 +321,13 @@ div.pedido:before {
 }
 
 
+/* Accordion */
 
 .accordion {
     background-color: #eee;
     color: #444;
     cursor: pointer;
-    padding: 5px;
+    padding: 0px 5px 10px;
     width: 100%;
     border: none;
     text-align: left;
@@ -348,7 +349,7 @@ div.pedido:before {
 }
 
 .active:after {
-    content: "\2212";
+    content:  "\2212";
 }
 
 .accordionpanel {
@@ -358,6 +359,9 @@ div.pedido:before {
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
+
+
+/* Blue table */
 table.blueTable {
   border: 1px solid #1C6EA4;
   background-color: #EEEEEE;
@@ -397,7 +401,7 @@ table.blueTable thead th:first-child {
 table.blueTable tfoot {
   font-size: 12px;
   font-weight: lighter;
-  color: #FFFFFF;
+  color:  #000000;
   background: #D0E4F5;
   background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
   background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
@@ -405,7 +409,7 @@ table.blueTable tfoot {
   border-top: 2px solid #444444;
 }
 table.blueTable tfoot td {
-  font-size: 12px;
+  font-size: 12px; 
 }
 table.blueTable tfoot .links {
   text-align: right;
@@ -416,4 +420,101 @@ table.blueTable tfoot .links a{
   color: #FFFFFF;
   padding: 2px 8px;
   border-radius: 5px;
+}
+
+/* Vinatmin */
+
+table.vitamins {
+    margin: 20px 0 0 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background: #EEEEEE;
+    color: #000;
+}
+
+table.vitamins th, table.vitamins td {
+    text-align: left;
+}
+
+table.vitamins thead {
+    line-height: 12px;
+    background: #2e63e7;    
+}
+
+table.vitamins thead th {
+    color: #fff;
+    padding: 10px;
+    letter-spacing: 1px;
+    vertical-align: bottom;
+}
+
+/*
+table.vitamins thead th:nth-child(1) {
+    width: 20%;
+    text-align: left;
+    padding-left: 20px;
+}
+
+table.vitamins thead th:nth-child(2) {
+    width: 30%;
+}
+
+table.vitamins thead th:nth-child(3) {
+    width: 35%;
+}
+
+table.vitamins thead th:nth-child(4) {
+    width: 15%;
+}
+*/
+
+table.vitamins tbody {
+    font-size: 1em;
+    line-height: 15px;
+}
+
+table.vitamins tbody tr {
+    border-top: 2px solid gray;
+    transition: background 0.6s, color 0.6s;
+}
+/*
+table.vitamins tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.2);
+}
+*/
+table.vitamins tbody tr:hover {
+    color: #000;
+    background: yellow;
+    font-weight: 900;
+}
+
+table.vitamins tbody td {
+    padding: 12px;
+}
+
+table.vitamins tbody tr:hover td:first-child {
+    background: rgba(0,0,0,0);
+}
+
+table.vitamins tbody td:first-child {
+    text-align: left;
+    padding-left: 20px;
+    font-weight: 700;
+    background: rgba(109, 176, 231, 0.35);
+    transition: backgrounf 0.6s;
+}
+
+table.vitamins tfoot {
+    font-size: 0.8em;
+}
+
+table.vitamins tfoot tr {
+    border-top: 2px solid #2e63e7;
+}
+
+table.vitamins tfoot td {
+    color: rgba(255,255,215,0.6);
+    text-align: left;
+    line-height: 15px;
+    padding: 15px 20px;
 }

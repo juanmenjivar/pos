@@ -21,6 +21,8 @@ $_html['contenido'] = ob_get_clean();
     <script type="text/javascript" src="<?php echo URI_SERVIDOR; ?>/JS/jquery.js"></script> 
     <script type="text/javascript" src="JS/stat.js"></script>
     <script type="text/javascript" src="<?php echo URI_SERVIDOR; ?>/JS/comun.php"></script> 
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+       
 </head> 
 
 <body> 
