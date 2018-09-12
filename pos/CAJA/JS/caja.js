@@ -848,6 +848,11 @@ $(function(){
         });
     });
     
+    $('#email').click(function(){  
+        
+         rsv_solicitar('cortez',{statsemail: "0", fecha: $('#fecha_caja').val()}, function(){});             
+    });
+    
     $('#ver_total').click(function(){
         
         var prueba = prompt('Ingrese la clave dinamica de CorteZ');

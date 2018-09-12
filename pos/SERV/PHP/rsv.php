@@ -730,28 +730,35 @@ class rsv {
 
     } // generar_impresion_tiquete
     
-    static function Statsemail(){
+    static function Statsemail($date){
         $message="";
         
+        if(isset($date)){
+            $_POST['periodo_inicio']=db_codex($date) . ' 00:00:00';
+            $_POST['periodo_final']=db_codex($date) . ' 23:59:59'; 
+        }else{
             $_POST['periodo_inicio']=date('Y-m-d 00:00:00');
             $_POST['periodo_final']=date('Y-m-d 23:59:59');            
+        }
                         
             require_once('TPL/estadisticas.tpl.php');
                         
-            $message=  $json['html'];
+            $message=  str_replace('accordionpanel','', $json['html'] );
 
+            // "        <meta charset='utf-8'> " .
+            
             $html="<!DOCTYPE html> " .
             "<html lang='en'> " .
             "    <head> " .
-                    "<STYLE type='text/css'>" . file_get_contents("../STAT/CSS/estilo.css") . "</STYLE>" .
-            "        <meta charset='utf-8'> " .
+                    "<STYLE type='text/css'>" . file_get_contents("../STAT/CSS/estilo.css") . "</STYLE>" .        
             "        <meta http-equiv='X-UA-Compatible' content='IE=edge'> " .
             "        <meta name='viewport' content='width=device-width, initial-scale=1'> " . $message . "  </head> </html>";
 
             //$message=str_replace("html9999", $message , $html);
             file_put_contents("C:\\xampp\htdocs\\pos\\backups\\backupstest.html", $html );
 
-            require 'PHPMailer-master/PHPMailerAutoload.php';
+            require 'class.phpmailer.php';
+            require 'class.smtp.php';
 
             $mail             = new PHPMailer();
             $mail->IsSMTP(); // telling the class to use SMTP
@@ -772,7 +779,7 @@ class rsv {
             $mail->AddReplyTo("kairoisaac@gmail.com","Las Tablitas Steak House");
             $mail->Subject    = "Las Tablitas Steak House - POS Stat Report";
             $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
-            $mail->MsgHTML($message);
+            $mail->MsgHTML($html);
              
 
             $mail->AddAddress("juan.menjivar@gmail.com", "Las Tablitas Steak House");
@@ -782,6 +789,7 @@ class rsv {
             //$mail->AddAttachment("images/phpmailer_mini.gif"); // attachment
 
             $mail->Send();
+ 
     }
    
 }

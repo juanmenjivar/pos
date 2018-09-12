@@ -367,16 +367,17 @@ function estadisticas_renderizar($datos) {
                 $cta = $datos['aux']['ctasprodpreciosdiff'][$idx]['ID_cuenta'];
                 
                 $buffer = '<table class="blueTable">'
-                        . '<thead><tr><td>Cuenta</td><td>Mesa</td><td>Mesero</td><td>Fecha Hora</td></tr></thead>' 
+                        . '<thead><tr><td>Cuenta</td><td>Mesa</td><td>Mesero</td><td>Fecha Hora Pedido</td></tr></thead>' 
                         . '<tbody><tr><td>' . $datos['aux']['ctasprodpreciosdiff'][$idx]['ID_cuenta'] . '</td> '
                         . '<td> ' . $datos['aux']['ctasprodpreciosdiff'][$idx]['ID_mesa'] . '</td> '
                         . '<td> '  . $datos['aux']['ctasprodpreciosdiff'][$idx]['ID_mesero'] . '-' 
                                 . $datos['aux']['ctasprodpreciosdiff'][$idx]['usuario'] . '</td> '
-                        . '<td> ' .  $datos['aux']['ctasprodpreciosdiff'][$idx]['fechahora_pedido'] . '</p> </tbody></table> ';
+                        . '<td> ' .  $datos['aux']['ctasprodpreciosdiff'][$idx]['fechahora_pedido'] . '</p>'
+                        . '</tbody></table> ';
                 
                 $buffer .= '<table class="blueTable">'
                         . '<thead><tr><td>Productos</td><td>Fecha Hora Pedido</td><td>Fecha Hora Eliminado:</td>'
-                        . '<td>Precio Original $</td><td>Precio Gravado $</td><td>Comentario:</td></thead>' ;
+                        . '<td>Precio Original $</td><td>Precio Gravado $</td><td>Comentario:</td></thead><tbody>' ;
             }
             
             $buffer1 = '';
@@ -384,12 +385,12 @@ function estadisticas_renderizar($datos) {
                 $buffer1 = ' style=" color:#ff0000;" ';                            
             }
             
-            $buffer .= '<td>  ' . $datos['aux']['ctasprodpreciosdiff'][$idx]['nombre'] . '</td> '
+             $buffer .= '<tr><td>  ' . $datos['aux']['ctasprodpreciosdiff'][$idx]['nombre'] . '</td> '
                     . '<td>  ' . $datos['aux']['ctasprodpreciosdiff'][$idx]['fechahora_pedido'] . '</td>  '
                     . '<td>  ' . $datos['aux']['ctasprodpreciosdiff'][$idx]['fechahora'] . '</td>  '
                     . '<td> ' . $datos['aux']['ctasprodpreciosdiff'][$idx]['precio_original'] . '</td> '
                     . '<td'. $buffer1 . '>' . $datos['aux']['ctasprodpreciosdiff'][$idx]['precio_grabado'] . '</td> '
-                    . '<td> ' . $datos['aux']['ctasprodpreciosdiff'][$idx]['nota'] . '</td>';
+                    . '<td> ' . $datos['aux']['ctasprodpreciosdiff'][$idx]['nota'] . '</td></tr>'; 
         }
         $buffer .= '</tbody></table>';
         estadisticas_agregar_panel('Cuentas con Productos precio cambiado', $buffer);

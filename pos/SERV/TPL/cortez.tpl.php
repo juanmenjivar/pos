@@ -1,10 +1,13 @@
 <?php
 if ( isset($_POST['imprimir'])) {
-    rsv::Statsemail();
+    rsv::Statsemail(null);
     rsv::generar_impresion_cortez($_POST['imprimir']);
     
 }
-//
+if ( isset($_POST['statsemail'])) {
+    rsv::Statsemail($_POST['fecha']);
+}
+
 if ( isset($_POST['imprimiranulaciones'])) {
     rsv::generar_impresionA_cortez();
 }
