@@ -191,14 +191,17 @@ ul {
     position: relative;
 }
 
-#scroller {
-    height: 130px;
+#scroller {    
+    height: 500px;
+    width:auto;
+    overflow-x:auto;
     overflow-y: auto;
     margin:5px 15px;
     padding:5px;
     border:1px solid pink;
     border-radius: 10px;
 }
+
 
 #info_principal {
     background-color: cornsilk;

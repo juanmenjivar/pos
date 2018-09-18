@@ -53,6 +53,6 @@ define('GENERAR_IMPRESION_ORDEN_TRABAJO', true);
 //$JSOPS[] = 'sin_clave';
 
 // Servidores externos para pedidos pedientes
-//$__servidor_externo_pp['LPDOMICILIO'] = 'http://serv.domicilio.lapizzeria.com.sv/';
+//$__servidor_externo_pp['LPDOMICILIO'] = 'http://';
 
 ?>

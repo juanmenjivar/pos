@@ -1,15 +1,15 @@
 <?php
 session_start();
 require_once('../configuracion.php');
-require_once('sesion.php');
+//require_once('sesion.php');
 
 $_html['titulo'] = '';
 if (empty($_GET['TPL'])) $_GET['TPL'] = 'tomar.pedido';
 
-if (  sesion::$iniciado )
+/*if (  sesion::$iniciado )
 {
     $_GET['TPL'] = 'iniciar.sesion';        
-}
+}*/
 
 ob_start();
 require_once('TPL/'.$_GET['TPL'].'.php');
@@ -29,7 +29,7 @@ $_html['contenido'] = ob_get_clean();
     <script type="text/javascript">URI_SERVIDOR = "<?php echo URI_SERVIDOR; ?>";</script>
     <script type="text/javascript" src="<?php echo URI_SERVIDOR; ?>/JS/jquery.js"></script>
     <script type="text/javascript" src="<?php echo URI_SERVIDOR; ?>/JS/jquery.simplemodal.js"></script>
-    <script type="text/javascript" src="<?php echo URI_SERVIDOR; ?>/JS/comun.js"></script>
+    <script type="text/javascript" src="<?php echo URI_SERVIDOR; ?>/JS/comun.php"></script>
     <script type="text/javascript" src="<?php echo URI_SERVIDOR; ?>/JS/jquery.qtip.js"></script>
     <script type="text/javascript">
     $(function(){

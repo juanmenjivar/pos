@@ -46,6 +46,7 @@
             &nbsp;Mesa: <input autocomplete="off" id="id_mesa" type="text" value="" style="width:3.5em;" />&nbsp;
             <button id="btn_rapido_cuenta_tiquete" class="btn">Tiquete</button>&nbsp;
             <button id="btn_rapido_cuenta_cerrar" class="btn">Cerrar</button>&nbsp;
+            
             ]
 
         </h1><hr />
@@ -64,9 +65,9 @@
     &nbsp;|&nbsp;C<span id="t_cuentas"></span>
     &nbsp;|&nbsp;P<span id="t_pendientes"></span>
     <br />
-    <span title="Distrubición de Servicio Normalizado" style="font-weight:bold;">DSN</span>: <span id="dsn"></span>
+    <span title="Distrubición de Servicio Normalizado" style="font-weight:bold;">Distrubición de Servicio Normalizado(DSN)</span>: <span id="dsn"></span>
     <br />
-    <span title="Tiempo Promedio de Servicio" style="font-weight:bold;">TPS</span>: <span id="tps"></span>
+    <span title="Tiempo Promedio de Servicio" style="font-weight:bold;">Tiempo Promedio de Servicio(TPS)</span>: <span id="tps"></span>
     &nbsp;|&nbsp;
-    <span title="Tiempo Máximo de Servicio" style="font-weight:bold;">TMS</span>: <span id="tms"></span>
+    <span title="Tiempo Máximo de Servicio" style="font-weight:bold;">Tiempo Máximo de Servicio(TMS)</span>: <span id="tms"></span>
 </div>

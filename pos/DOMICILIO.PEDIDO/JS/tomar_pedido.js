@@ -39,7 +39,7 @@ function reiniciarInterfaz() {
     mostrar_grupo_productos();
     miniResumenOrden();
     ResumenOrden();
-    obtener_lista_meseros();
+    // obtener_lista_meseros();
     
     $("#cliente_telefono").val('');
     $("#cliente_nombre").val('');
@@ -323,6 +323,10 @@ $(window).load(function(){
     reiniciarInterfaz();
 });
 
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
 $(function(){  
     rsv_solicitar('producto_ingredientes_y_adicionales',{}, function(datos){
         for (x in datos.aux.adicionables)
@@ -386,13 +390,34 @@ $(function(){
     $(document).on('click','.ppia_adicional',function(){
         $("#busqueda_adicionales").val('').focus().trigger('keyup');
     });
-    
+   /* 
+    $('#domicilio_metodo_pago_tarjeta').click(function(){
+        alert($('[name="domicilio_metodo_pago"]:checked').val());
+    });
+    $('#domicilio_metodo_pago_efectivo').click(function(){
+        alert($('[name="domicilio_metodo_pago"]:checked').val());
+    });
+    */
     $('#enviar_orden_a_cocina').click(function(){
         
         if (_orden.length == 0)
         {
             alert('No hay pedidos en la orden.');
             return;
+        }
+                
+        if ($('[name="domicilio_metodo_pago"]:checked').val()=='tarjeta'){
+             if($("#cliente_tarjeta").val()=='' || $("#cliente_tarjeta_expiracion").val()=='' ){
+                 alert('Pago con tarjeta requiere Numero de tarjeta y Expiracion, valide que esten llenos.');
+                 $("#cliente_tarjeta").focus();
+                 
+                 return;
+             }
+             if(! isNumeric($("#cliente_tarjeta").val()) || !isNumeric($("#cliente_tarjeta_expiracion").val()) ){
+                 alert('El valor de Numero de tarjeta o Expiracion NO es valido.');
+                 $("#cliente_tarjeta").focus();
+                 return ;
+             }
         }
         
         var datos_domicilio = obtener_datos_domicilio();
@@ -405,7 +430,11 @@ $(function(){
         
         var PAUSAR_ELABORACION = ( $('#flag_pausa').is(':checked') ? 'si' : 'no' );
             
-        rsv_solicitar('ingresar_orden',{mesa: datos_domicilio['telefono'], mesero: 0, orden: _orden, domicilio: datos_domicilio, FORZAR_CUENTA_NUEVA: true, FORZAR_NO_PROPINA: true, GENERAR_IMPRESION_DOMICILIO:true, PAUSAR_ELABORACION: PAUSAR_ELABORACION, pedido_fechahora_activacion: $("#fechahora_activacion").val() }, function(){
+        rsv_solicitar('ingresar_orden',{mesa: datos_domicilio['telefono'], mesero: 999, 
+            orden: _orden, domicilio: datos_domicilio, FORZAR_CUENTA_NUEVA: true, 
+            FORZAR_NO_PROPINA: true, GENERAR_IMPRESION_DOMICILIO:true, 
+            PAUSAR_ELABORACION: PAUSAR_ELABORACION, 
+            pedido_fechahora_activacion: $("#fechahora_activacion").val() }, function(){
             reiniciarInterfaz();
             $('#info_principal').html('<div style="color:red;font-size:14px;font-weight:bold;text-align:center;">ORDEN ENVIADA</div>');
         }); 
@@ -547,12 +576,7 @@ $(function(){
        $('.contenedor_adicionales tbody tr').hide();
        $('.contenedor_adicionales tbody tr[rel="'+afinidad+'"]').show();
     });
-    
-    $(document).on('keydown', '#busqueda_adicionales', function(event){
-        //Keydown es antes de keyup
-        //event.stopPropagation();
-    });
-    
+          
 
     $(document).on('keydown', '#buscar_producto', function(event){
         var keyCode = event.keyCode || event.which;
@@ -638,6 +662,6 @@ $(function(){
     });
         
     mostrar_grupo_productos();
-    obtener_lista_meseros();
+    // obtener_lista_meseros();
 
 });

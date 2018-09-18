@@ -113,11 +113,13 @@ function domicilio__cambiar_vista()
     if (vista === 'cliente')
     {
         $('#cambiar_vista').prop('src','IMG/clientes.png');
+        $('#cambiar_vista').prop('title','Click para ingreso pedidos');
         $('#vista_pizza').show();
         $('#vista_cliente').hide();
         vista = 'pizza';
     } else {
         $('#cambiar_vista').prop('src','IMG/pizza.png');
+        $('#cambiar_vista').prop('title','Click para agregar Productos');
         $('#vista_pizza').hide();
         $('#vista_cliente').show();
         vista = 'cliente';
@@ -153,6 +155,12 @@ function domicilio__cliente_tarjeta_keyup()
 function domicilio__estado_pedidos_click()
 {
     vista_estado_pedidos = ! vista_estado_pedidos;
+    
+    if(vista_estado_pedidos){
+        $('#estado_pedidos').prop('title','Click para Ingresar Pedidos');
+    }else{
+        $('#estado_pedidos').prop('title','Click para consultar pedidos');
+    }
     
     $("#vista_pedidos").toggle(!vista_estado_pedidos);
     $("#cambiar_vista").toggle(!vista_estado_pedidos);
